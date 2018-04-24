@@ -10,5 +10,16 @@
 	<h1>Pizza Luigi</h1>
 	<img src='images/pizza.jpg' alt='pizza' class='fullwidth'>
 	<h2>${boodschap}</h2>
+	<h2>${lievelingsgetal}</h2>
+	<h2>de zaakvoerder</h2>
+	<dl>
+	<dt>Naam</dt> <dd>${zaakvoerder.voornaam}</dd>
+	<dt>Aantal Kinderen</dt> <dd>${zaakvoerder.aantalKinderen}</dd>
+	  <dt>Gehuwd</dt><dd>${zaakvoerder.gehuwd ? 'Ja' : 'Nee'}</dd> 
+	  <dt>Adres</dt>
+	  <dd>${zaakvoerder.adres.straat}</dd><dd>${zaakvoerder.adres.huisNr}</dd>
+	  <dd>${zaakvoerder.adres.postcode}</dd><dd>${zaakvoerder.adres.gemeente}</dd>
+	</dl>
+
 </body>
 </html>

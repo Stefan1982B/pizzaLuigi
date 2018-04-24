@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import be.vdab.pizzaluigi.valueObjets.Adres;
+import be.vdab.pizzaluigi.valueObjets.Persoon;
+
 @Controller
 @RequestMapping("/")
 class indexController {
@@ -22,7 +25,11 @@ class indexController {
 			boodschap = "Goede avond";
 		}
 
-		  return new ModelAndView("/WEB-INF/JSP/index.jsp", "boodschap", boodschap);
+		ModelAndView modelandview = new ModelAndView ("index", "boodschap", boodschap);
+		  modelandview.addObject("lievelingsgetal", 7);
+		  modelandview.addObject("zaakvoerder", new Persoon("Luigi", "Peperone", 7, true, new Adres("Grote Markt", "3" , 8490, "oudenaarede")));
+		  
+		  return modelandview;
 
 	}
 }
