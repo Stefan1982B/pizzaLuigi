@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class PizzaControllerTest {
 	
-	private pizzaController controller;
+	private PizzaController controller;
 	 @Before
 	 public void before() {
-	 controller = new pizzaController();
+	 controller = new PizzaController();
 	 }
 
 	@Test

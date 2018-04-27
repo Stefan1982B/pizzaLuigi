@@ -16,12 +16,12 @@ import be.vdab.pizzaluigi.valueObjets.Pizza;
 
 @Controller
 @RequestMapping("pizzas")
-public class pizzaController {
+public class PizzaController {
 
 	private final static String PIZZAS_VIEW = "pizzas";
 	private final Map<Long, Pizza> pizzas = new LinkedHashMap<>();
 
-	pizzaController() {
+	PizzaController() {
 
 		pizzas.put(1L, new Pizza(1, "Prosciutto", BigDecimal.valueOf(4), true));
 		pizzas.put(2L, new Pizza(2, "Margherita", BigDecimal.valueOf(5), false));
