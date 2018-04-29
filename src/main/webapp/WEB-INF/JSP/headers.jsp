@@ -9,6 +9,7 @@
  </head>
  <body>
  <c:import url='/WEB-INF/JSP/menu.jsp'/>
-
+    Je browser wordt uitgevoerd op   
+       ${opWindows ? "Windows" : "een niet-Windows besturingssysteem"}.
  </body>
 </html>

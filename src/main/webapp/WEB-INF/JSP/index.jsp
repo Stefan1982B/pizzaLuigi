@@ -11,7 +11,8 @@
 <body>
 	<c:import url='/WEB-INF/JSP/menu.jsp' />
 	<h1>Pizza Luigi</h1>
-	<img src='<c:url value="/images/pizza.jpg"/>' alt='pizza' class='fullwidth'>
+	<img src='<c:url value="/images/pizza.jpg"/>' alt='pizza'
+		class='fullwidth'>
 	<h2>${boodschap}</h2>
 	<h2>${lievelingsgetal}</h2>
 	<h2>de zaakvoerder</h2>
@@ -29,5 +30,9 @@
 		<dd>${zaakvoerder.adres.gemeente}</dd>
 	</dl>
 
+	<c:if test='${not empty laatstBezocht}'>
+		<p>Je bezocht onze website laatst op ${laatstBezocht}.</p>
+	</c:if>
+<p>Deze pagina werd ${aantalKeerBekeken} keer bekeken.</p>
 </body>
 </html>
