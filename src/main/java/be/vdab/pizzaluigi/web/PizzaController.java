@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import be.vdab.pizzaluigi.valueObjets.Pizza;
+import be.vdab.pizzaluigi.services.EuroService;
 
 @Controller
 @RequestMapping("pizzas")
@@ -21,14 +22,17 @@ public class PizzaController {
 
 	private final static String PIZZAS_VIEW = "pizzas";
 	private final Map<Long, Pizza> pizzas = new LinkedHashMap<>();
+	private final EuroService euroService; 
 
-	PizzaController() {
+	PizzaController(EuroService euroService) {
 
 		pizzas.put(1L, new Pizza(1, "Prosciutto", BigDecimal.valueOf(4), true));
 		pizzas.put(2L, new Pizza(2, "Margherita", BigDecimal.valueOf(5), false));
 		pizzas.put(3L, new Pizza(3, "Calzone", BigDecimal.valueOf(4), false));
 		pizzas.put(4L, new Pizza(4, "Fungi & Olive", BigDecimal.valueOf(5), false));
 		pizzas.put(23L, new Pizza(23, "Fungi & Olive", BigDecimal.valueOf(5), false));
+		
+		this.euroService = euroService;
 	}
 
 	@GetMapping
@@ -41,9 +45,9 @@ public class PizzaController {
 	@GetMapping("{id}")
 	ModelAndView pizza(@PathVariable long id) {
 		ModelAndView modelandview = new ModelAndView(PIZZA_VIEW);
-		if (pizzas.containsKey(id)) {
-			modelandview.addObject(pizzas.get(id));
-		}
+		Pizza pizza = pizzas.get(id);
+		modelandview.addObject(pizza);
+		modelandview.addObject("inDollar", euroService.naarDollar(pizza.getPrijs()));
 		return modelandview;
 	}
 
