@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,6 +45,22 @@ public class PizzaController {
 			modelandview.addObject(pizzas.get(id));
 		}
 		return modelandview;
+	}
+
+	private final static String PRIJZEN_VIEW = "prijzen";
+
+	@GetMapping("prijzen")
+	ModelAndView prijzen() {
+		return new ModelAndView(PRIJZEN_VIEW, "prijzen",
+				pizzas.values().stream().map(pizza -> pizza.getPrijs()).distinct().collect(Collectors.toSet()));
+	}
+
+	@GetMapping(params = "prijs")
+	ModelAndView pizzasVanPrijs(BigDecimal prijs) {
+		return new ModelAndView(PRIJZEN_VIEW, "pizzas",
+				pizzas.values().stream().filter(pizza -> pizza.getPrijs().equals(prijs)).collect(Collectors.toList()))
+						.addObject("prijs", prijs).addObject("prijzen", pizzas.values().stream()
+								.map(pizza -> pizza.getPrijs()).distinct().collect(Collectors.toSet()));
 	}
 
 }
