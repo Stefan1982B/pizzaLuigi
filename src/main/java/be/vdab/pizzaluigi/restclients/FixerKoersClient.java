@@ -9,6 +9,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import be.vdab.pizzaluigi.exceptions.KoersClientException;
@@ -17,16 +18,10 @@ import be.vdab.pizzaluigi.exceptions.KoersClientException;
 @Qualifier("Fixer")
 class FixerKoersClient implements KoersClient {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FixerKoersClient.class);
-	private URL url;
+	private final URL url;
 
-	FixerKoersClient() {
-		try {
-			url = new URL("https://api.fixer.io/latest?symbols=USD");
-		} catch (MalformedURLException ex) {
-			String fout = "Fixer URL is verkeerd:" + url;
-			LOGGER.error(fout, ex);
-			throw new KoersClientException(fout);
-		}
+	FixerKoersClient(@Value ("${fixerKoersURL}")URL url) {
+			this.url = url;
 	}
 
 	@Override

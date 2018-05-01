@@ -12,7 +12,7 @@ import be.vdab.pizzaluigi.restclients.KoersClient;
 class DefaultEuroService implements EuroService {
 	private final KoersClient koersClient;
 
-	DefaultEuroService(@Qualifier("ECB")KoersClient koersClient) {
+	DefaultEuroService(@Qualifier("Fixer")KoersClient koersClient) {
 		this.koersClient = koersClient;
 	}
 
