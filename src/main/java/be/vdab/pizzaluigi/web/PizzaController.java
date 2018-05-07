@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,7 +82,7 @@ public class PizzaController {
 	}
 
 	@GetMapping(params = { "van", "tot" })
-	ModelAndView findVanTotPrijs(VanTotPrijsForm form, BindingResult bindingResult) {
+	ModelAndView findVanTotPrijs(@Valid VanTotPrijsForm form, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView(VAN_TOT_PRIJS_VIEW);
 		if (bindingResult.hasErrors()) {
 			return modelAndView;
