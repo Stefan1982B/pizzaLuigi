@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import be.vdab.pizzaluigi.valueObjets.Pizza;
 import be.vdab.pizzaluigi.services.EuroService;
@@ -106,11 +107,12 @@ public class PizzaController {
 	}
 
 	@PostMapping("toevoegen")
-	ModelAndView toevoegen(@Valid Pizza pizza, BindingResult bindingResult) {
+	ModelAndView toevoegen(@Valid Pizza pizza, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView(TOEVOEGEN_VIEW);
 		}
 		pizzaService.create(pizza);
+		redirectAttributes.addAttribute("boodschap", "Pizza toegevoegd");
 		return new ModelAndView(REDIRECT_URL_NA_TOEVOEGEN);
 	}
 	
