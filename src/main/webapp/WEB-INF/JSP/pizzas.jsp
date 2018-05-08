@@ -20,7 +20,8 @@
 				${pizza.prijs}&euro; <c:choose>
 					<c:when test='${pizza.pikant}'>pikant</c:when>
 					<c:otherwise>niet pikant</c:otherwise>
-				</c:choose> <spring:url value='/pizzas/{id}' var='url'>
+				</c:choose>
+				 <spring:url value='/pizzas/{id}' var='url'>
 					<spring:param name='id' value='${pizza.id}' />
 				</spring:url> <a href='${url}'>Detail</a>
 			</li>
