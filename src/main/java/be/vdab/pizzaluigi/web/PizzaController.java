@@ -79,8 +79,8 @@ public class PizzaController {
 	@GetMapping("vantotprijs")
 	ModelAndView findVanTotPrijs() {
 		VanTotPrijsForm form = new VanTotPrijsForm();
-		form.setVan(BigDecimal.ZERO);
-		form.setTot(BigDecimal.ZERO);
+//		form.setVan(BigDecimal.ZERO);
+//		form.setTot(BigDecimal.ZERO);
 		return new ModelAndView(VAN_TOT_PRIJS_VIEW).addObject(form);
 	}
 
